@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atracciones</title>
+    <style>
+        body{
+            margin:50px;
+        }
+        #mensaje1, #datosUsuario{
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Acceso a las atracciones</h1>
+    <p id="datosUsuario"></p><!-- aqui mostramos los datos del usuario: nombre edad y altura --> 
+    <p>En la atracción 1 -  el usuario debe ser mayor de edad y tener una altura mínima de 1,4m</p>
+    <p id="mensaje1"></p><!-- aqui mostramos el mensaje de la atraccion 1 --> 
+
+    <p>En la Atracción 2 - el usuario debe ser mayor de edad o tener una altura mínima de 1,5m</p>
+    <p id="mensaje2"></p> <!-- aqui mostramos el mensaje de la atraccion 2 --> 
+    <script>
+        let usuario = sessionStorage.getItem("usuario"); // recuperamos el nombre de la pagina de usuario
+        let edad = parseInt(prompt("Introduce la edad. Por ejemplo, 18: ")); // introducimos la edad
+        let altura = parseFloat(prompt("Introduce la altura.Por ejemplo, 1.5: ")); // introducimos la altura
+        let mensaje1 = ""; // variable que vamos a usar para mostrar el mensaje de la atraccion 1
+        let mensaje2 = ""; // variable que vamos a usar para mostrar el mensaje de la atraccion 2
+        
+        document.getElementById("datosUsuario").innerHTML= "El usuario "+usuario+" tiene "+edad+" años y mide "+altura+"m.";
+        
+        /* En el fichero debe aparecer los dos mensajes con el nombre del usuario, el nombre de
+            la atracción, si puede acceder o no y el motivo.  */
+
+        // Verificamos el acceso a la atraccion 1  
+        // En la atracción 1, el usuario debe ser mayor de edad y tener una altura mínima de 1,4m.  
+        if (edad >= 18 && altura >= 1.4) {
+            mensaje1 = usuario+" <strong>puede</strong> acceder a la atracción 1 porque cumple con la edad y la altura requeridas.";
+        } else {
+            mensaje1 = usuario+" <strong>no puede</strong> acceder a la atracción 1 porque";
+            if (edad < 18) {
+                mensaje1 += " tiene " + edad + " años y es menor de edad";
+            }
+            if (altura < 1.4) {
+                mensaje1 += "  mide " + altura + " y no llega a la altura mínima";
+            }
+        }
+        // En la atracción 2, el usuario debe ser mayor de edad o tener una altura mínima de 1,5m.
+        if (edad >= 18 || altura >= 1.5) {
+            mensaje2 = usuario + " <strong>puede</strong> entrar a la atracción 2 porque "
+            if(edad >= 18){
+                mensaje2 += " tiene "+edad+" años  y es mayor de edad";
+            }
+            
+            if(altura >= 1.5){
+                mensaje2 += " tiene una altura de "+altura+" metros";
+            }
+        }else{
+
+            mensaje2 = usuario + " <strong>no puede</strong> entrar a la atracción 2 porque,";
+            if(edad < 18){
+
+                mensaje2 += " tiene "+edad+ " y es menor de edad";
+
+            } 
+            if(altura < 1.5){
+                mensaje2 += " mide "+altura+" y no tiene la altura mínima";
+            }
+        }
+        //  mostramos los mensajes en los elementos id correspondientes
+        document.getElementById("mensaje1").innerHTML = mensaje1;
+        document.getElementById("mensaje2").innerHTML = mensaje2;
+    </script>
+</body>
+</html>
