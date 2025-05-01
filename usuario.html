@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario V1.5</title>
+    <style>
+        body{
+            margin:50px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="saludo">MI PRIMERA WEB</h1>
+    <h1 id="saludo">Saludo modificado</h1>
+    <p>Generador</p>
+    <a href="atracciones.html">Ir a las atracciones</a>
+    <script>
+
+        let usuario = prompt("Introduce el nombre del usuario"); // Guardamos en una variable el nombre del usuario.
+
+        usuario = usuario.toUpperCase(); // Pasamos el nombre a mayusculas.
+        sessionStorage.setItem("usuario", usuario); // Guardamos el nombre en la sesion.
+        document.getElementById("saludo").innerText = "Bienvenido al parque de atracciones "+usuario; // Introducimos el nombre en el saludo.
+
+    </script>
+    <p>El final de la web</p>
+</body>
+</html>
